@@ -1,0 +1,168 @@
+@charset "UTF-8";
+/* ------------------------------------
+  MOBILE FIRST RESPONSIVE NAV
+------------------------------------ */
+/**
+ * VARIABLES
+ * =========
+*/
+/**
+ * NAV WRAPPER
+ * ===========
+ *
+ * <nav> element that wraps our navigation.
+ *
+ * [1] Make sure we can’t actually see the absolutely positioned dropdown.
+*/
+.responsive-nav {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  margin:11px;
+  text-align: center;
+  /* Now show full width */
+}
+
+.responsive-nav__item a:hover, .responsive-nav__item a:focus, .responsive-nav__item a:active {
+  color:white;
+  text-decoration: none;
+}
+@media (min-width: 40em) {
+  .responsive-nav {
+    max-width: 100%;
+  }
+}
+
+/* Class added via JS when toggled open */
+.responsive-nav--open {
+  overflow: visible;
+}
+
+/**
+ * NAV LIST
+ * ========
+*/
+.responsive-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #479abf;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  width: 100%;
+  /**
+   * Hide nav by default only when JS is running and viewport is less than
+   * navigation breakpoint.
+   * The wrapper has 'overflow: hidden;' which hides it.
+  */
+  /* Remove background */
+}
+.responsive-nav__item:hover,.responsive-nav__item:active,.responsive-nav__item:focus {
+  background-color: #267496;
+  }
+.responsive-nav__item:focus {
+  color: #267496;
+  }
+a:focus {
+  color: #267496 !important;
+  }
+
+  a:hover, a:active {
+  color: #fff !important;
+  }
+
+@media (max-width: 40em) {
+  .js .responsive-nav__list {
+    position: absolute;
+  }
+}
+@media (min-width: 40em) {
+  .responsive-nav__list {
+    background: none;
+  }
+}
+
+/**
+ * NAV LIST ITEMS
+ * ==============
+*/
+.responsive-nav__item {
+  border-top: 1px solid #378aaf;
+  /* Change from stacked to display in a row */
+}
+@media (min-width: 40em) {
+  .responsive-nav__item {
+    display: inline-block;
+    border-top: none;
+  }
+}
+
+/**
+ * NAV LINKS
+ * =========
+ *
+ * [1] Ensure that the link text lines up with the hamburger.
+ * [2] Ensure that the link text is the same height as the trigger.
+*/
+/* Reusable silent class so we can share styles with the toggle */
+.responsive-nav__link, .responsive-nav__toggle {
+  color: #fff;
+  display: block;
+  white-space: nowrap;
+  padding-right: 14px;
+  padding-left: 14px;
+  line-height: 44px;
+}
+
+.responsive-nav__link {
+  /* Background now gone so change link colour */
+}
+@media (min-width: 40em) {
+  .responsive-nav__link {
+    color: #479abf;
+  }
+}
+
+/**
+ * TOGGLE BUTTON
+ * =============
+ *
+ * <a> element inserted via JavaScript which toggles the nav.
+ *
+ * [1] Match the navigation link styles.
+ * [2] So toggle button width is at least the hit-area size, but can grow.
+*/
+.responsive-nav__toggle {
+  display: inline-block;
+  background: #479abf;
+  min-width: 44px;
+  border-radius: 3px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /* Content for toggle button */
+  /* Menu open styles */
+  /* Now hide the toggle button as menu show by default */
+}
+.responsive-nav__toggle:before {
+  content: "☰";
+  font-size: 16px;
+  line-height: 1;
+}
+.responsive-nav__toggle:hover {
+  text-decoration: none;
+}
+.responsive-nav--open .responsive-nav__toggle {
+  width: 100%;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  /* Change hamburger icon to a close icon */
+}
+.responsive-nav--open .responsive-nav__toggle:before {
+  content: "✕";
+}
+@media (min-width: 40em) {
+  .responsive-nav__toggle {
+    display: none;
+  }
+}

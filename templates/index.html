@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>r/funny</title>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{{static_url('css/main.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{static_url('css/nav.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{static_url('css/magnific-popup.css')}}">
+	<script type="text/javascript" src="{{static_url('js/jquery.magnific-popup.min.js')}}"></script>
+	<script>
+		$(document).ready(function() {
+		  $('.gallery').magnificPopup({
+			  delegate: '.item>a', // child items selector, by clicking on it popup will open
+			  type: 'image',
+			  gallery:{enabled:true}
+			  // other options
+			});
+		});
+	</script>
+</head>
+<body>
+
+<div class="container">
+	<div class="col-md-8 col-md-offset-2 col-sm-12 gallery">
+		<h1 class="logo">Funny Bone</h1>
+
+		<nav class="responsive-nav" id="js-responsive-nav">
+		    <ul class="responsive-nav__list">
+		        <li class="responsive-nav__item">
+		            <a href="/" class="responsive-nav__link">Hot</a>
+		        </li>
+		        <li class="responsive-nav__item">
+		            <a href="/top/100" class="responsive-nav__link">Top Today</a>
+		        </li>
+		        <li class="responsive-nav__item">
+		            <a href="/new/100" class="responsive-nav__link">New</a>
+		        </li>
+		    </ul>
+		    
+		</nav>
+
+		<div class="gallery">
+		    {% for x in image_list %}
+		  		<div class="item">
+		  		{% if x[0].endswith('.webm') %}
+		  			<div class="title">
+			  			<h1> {{ x[2].title }}</h1>
+			  			<h2> <a href="{{ x[2].permalink }}">{{ x[2].ups }} Upvotes</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ x[2].permalink }}">{{ x[2].num_comments }} Comments</a></h2>
+					</div>
+		  			<a href="{{ x[0] }}"><div class="video-container"><video autoplay="" loop="" muted=""><source type="video/webm" src="{{ x[0] }}"></video></div></a>
+		  			
+		  		{% else %}
+		  			<div class="title">
+			  			<h1> {{ x[2].title }}</h1>
+			  			<h2> <a href="{{ x[2].permalink }}">{{ x[2].ups }} Upvotes</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ x[2].permalink }}">{{ x[2].num_comments }} Comments</a></h2>
+					</div>
+		     		<a href="{{ x[0] }}"><img src="{{ x[0] }}" /></a>
+		     	{% end %}
+		     	</div>
+		    {% end %}
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
